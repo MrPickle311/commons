@@ -45,6 +45,7 @@ add_message_files(
         RotorAbsolutePosition.msg
         RotorReset.msg
         RotorRelativePosition.msg
+        DroneState.msg
 )
 
 ## Generate services in the 'srv' folder
