@@ -42,8 +42,6 @@ add_message_files(
         SendImagesToServerEvent.msg
         StationState.msg
         StationError.msg
-        RotorMovementState.msg
-        RotorCalibrationState.msg
         RotorAbsolutePosition.msg
         RotorReset.msg
         RotorRelativePosition.msg

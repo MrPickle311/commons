@@ -1,5 +1,6 @@
 #goal definition
-uint8  bus_number
+uint8    bus_number
+float32  feedback_interval
 ---
 #result definition
 uint8 exit_code
@@ -8,3 +9,4 @@ uint8 exit_code
 # from 0 to 2pi
 # in radians
 float32 rotor_pos
+uint8   rotor_calibration_state
