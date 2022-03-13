@@ -1,0 +1,10 @@
+#goal definition
+uint8  bus_number
+---
+#result definition
+uint8 exit_code
+---
+#feedback
+# from 0 to 2pi
+# in radians
+float32 rotor_pos

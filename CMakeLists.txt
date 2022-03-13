@@ -42,6 +42,11 @@ add_message_files(
         SendImagesToServerEvent.msg
         StationState.msg
         StationError.msg
+        RotorMovementState.msg
+        RotorCalibrationState.msg
+        RotorAbsolutePosition.msg
+        RotorReset.msg
+        RotorRelativePosition.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -66,6 +71,7 @@ add_action_files(
         HttpServerProcess.action
         HttpClientProcess.action
         FTPServerProcess.action
+        RotorProcess.action
 )
 
 ## Generate added messages and services with any dependencies listed here
