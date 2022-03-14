@@ -18,6 +18,6 @@ class SimpleHttpSender(HttpSender):
     @abstractmethod
     def _create_message(self, *args) -> SimpleMessage: ...
 
-    def send_simple_message(self, raw_message: any) -> None:
-        data = self._create_message(raw_message)
+    def send_simple_message(self, *args) -> None:
+        data = self._create_message(*args)
         self.send_message(data)
