@@ -1,5 +1,6 @@
 #goal definition
 uint8    bus_number
+uint8    device_address
 float32  feedback_interval
 ---
 #result definition
