@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Dict
-
+import os, sys
+import traceback
 from flask import Flask, Request, Response
 
 
@@ -29,7 +30,13 @@ class ServerAPI(Flask, ABC):
         except KeyError:
             return Response(f"Path '{incoming_request.path}' not found", status=404)
         except Exception as exc:
-            return Response(f"Internal {self._server_name} server error : {exc}", status=401)
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            return Response(
+                # f"Internal {self._server_name} server error : {exc} in file {fname} , at line:  {exc_tb.tb_lineno}",
+                f"Internal {self._server_name} server error \n "
+                f"{traceback.format_exc()}",
+                status=500)
 
     @abstractmethod
     def endpoints_creation(self):
