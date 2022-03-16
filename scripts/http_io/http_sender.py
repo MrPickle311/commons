@@ -9,6 +9,7 @@ class HttpSender:
         self.port = port
         self.message_type = message_type
         self.url_address = 'http://{0}:{1}/{2}/{3}'.format(self.ip_address, self.port, domain, self.message_type)
+        print(self.url_address)
         self.station_id = station_id
         self.station_id_str = 'station_id'
 
@@ -21,7 +22,8 @@ class HttpSender:
     def check_response_is_ok(self, response: requests.Response) -> None:
         if not response.ok:
             self.wrong_connection_service(response)
-            raise ConnectionError('Something went wrong with http connection!')
+            raise ConnectionError(f'Something went wrong with http connection! {response.status_code}'
+                                  f'{response.content}')
 
         self.additional_checking(response)
 
