@@ -10,8 +10,8 @@ class I2CDevice:
     def write_byte(self, byte: int):
         self._bus.write_byte(self._device_address, byte)
 
-    def read_block_data_from(self, register: int) -> List[int]:
-        return self._bus.read_block_data(self._device_address, register)
+    def read_block_data_from(self, register: int, length: int) -> List[int]:
+        return self._bus.read_i2c_block_data(self._device_address, register, length)
 
     def write_block_data_to(self, register: int, data: List[int]) -> None:
-        self._bus.write_block_data(self._device_address, register, data)
+        self._bus.write_i2c_block_data(self._device_address, register, data)
