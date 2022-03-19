@@ -24,6 +24,7 @@ class ServerAPI(Flask, ABC):
 
     def _route_handler(self, incoming_request: Request):
         try:
+            print(f'Processing request {incoming_request.path}')
             return self._http_path_handlers[incoming_request.path].process_request(incoming_request)
         except KeyError:
             return Response(f"Path '{incoming_request.path}' not found", status=404)
@@ -39,7 +40,7 @@ class ServerAPI(Flask, ABC):
 
     def run_server(self):
         self.run(port=self._port, host=self._host)
-        print('Server Finished!')
 
     def add_api_path_handler(self, prefix: str, path: str, handler: HttpPathHandler):
         self._http_path_handlers[f'{prefix}' + path] = handler
+        print(f'Added http msg receiver {prefix + path}')
