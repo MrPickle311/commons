@@ -13,13 +13,12 @@ class HttpPathHandler(ABC):
 
 class ServerAPI(Flask, ABC):
 
-    def __init__(self, server_name: str, port: int, host_name: str, base_prefix: str):
+    def __init__(self, server_name: str, port: int, host_name: str):
         Flask.__init__(self, server_name)
         self._server_name = server_name
         self._port = port
         self._host = host_name
         self._http_path_handlers: Dict[str, HttpPathHandler] = {}
-        self._base_prefix = base_prefix
 
         self.endpoints_creation()
 
@@ -42,5 +41,5 @@ class ServerAPI(Flask, ABC):
         self.run(port=self._port, host=self._host)
         print('Server Finished!')
 
-    def add_api_path_handler(self, path: str, handler: HttpPathHandler):
-        self._http_path_handlers[f'{self._base_prefix}' + path] = handler
+    def add_api_path_handler(self, prefix: str, path: str, handler: HttpPathHandler):
+        self._http_path_handlers[f'{prefix}' + path] = handler
