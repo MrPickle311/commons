@@ -37,7 +37,7 @@ add_message_files(
         Signal.msg
         HttpExposedResourcesContent.msg
         HttpServerSimpleEvent.msg
-        MissionFilesUploadedEvent.msg
+        MissionsUploadedEvent.msg
         ReceivedImagesFromFtpServerEvent.msg
         SendImagesToServerEvent.msg
         StationState.msg
@@ -57,6 +57,7 @@ add_service_files(
         AutomationStates.srv
         TryUploadMission.srv
         TryLand.srv
+        DroneSimpleTask.srv
 )
 
 ## Generate actions in the 'action' folder
