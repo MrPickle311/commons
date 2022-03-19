@@ -28,6 +28,12 @@ class HttpSender:
         self.additional_checking(response)
 
     def send_message(self, data: BaseModel) -> Response:
-        response = requests.post(url=self.url_address, json=data.dict())
-        self.check_response_is_ok(response)
+        response = Response()
+        try:
+            response = requests.post(url=self.url_address, json=data.dict())
+            self.check_response_is_ok(response)
+        except requests.exceptions.RequestException as e:
+            print('Desired message destination is offline!')
+            print(f'Print exception message: {str(e)}\n')
+            response.status_code = 400
         return response
