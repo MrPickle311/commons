@@ -2,6 +2,7 @@ import requests
 from pydantic import BaseModel
 from requests import Response
 
+
 class HttpSender:
 
     def __init__(self, host_address: str, port: int, message_type: str, station_id: int, domain: str):
@@ -34,6 +35,6 @@ class HttpSender:
             self.check_response_is_ok(response)
         except requests.exceptions.RequestException as e:
             print('Desired message destination is offline!')
-            print(f'Print exception message: {str(e)}\n')
+            print(f'Exception message: {str(e)}\n')
             response.status_code = 400
         return response
