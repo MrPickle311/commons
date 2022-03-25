@@ -23,8 +23,9 @@ class HttpSender:
     def check_response_is_ok(self, response: requests.Response) -> None:
         if not response.ok:
             self.wrong_connection_service(response)
-            raise ConnectionError(f'Something went wrong with http connection! {response.status_code}'
-                                  f'{response.content}')
+            raise requests.exceptions.RequestException(
+                f'Something went wrong with http connection! {response.status_code}'
+                f'{response.content}')
 
         self.additional_checking(response)
 
