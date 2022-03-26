@@ -5,7 +5,7 @@ class DroneStateMessage(BaseModel):
     lattitude: float
     longitude: float
     altitude: float
-    battery_level: float
+    battery_volt: float
     battery_temp: float
 
 

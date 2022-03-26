@@ -58,6 +58,7 @@ add_service_files(
         TryUploadMission.srv
         TryLand.srv
         DroneSimpleTask.srv
+        DroneReturn.srv
 )
 
 ## Generate actions in the 'action' folder
