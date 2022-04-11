@@ -1,4 +1,6 @@
-float32 station_longitude
-float32 station_lattitude
-float32 drone_battery_level
-uint8   station_battery_level
+float32 drone_longitude
+float32 drone_lattitude
+float32 drone_battery_voltage
+float32 drone_battery_temperature
+float32 station_accumulators_temperature
+uint8   station_accumulators_level
