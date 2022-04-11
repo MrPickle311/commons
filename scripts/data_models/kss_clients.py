@@ -22,6 +22,22 @@ class StateMessage(SimpleMessage):
     state_id: str
 
 
-class DiagnosticsMessage(SimpleMessage):
-    module_id: str
-    date: str
+class PosistionMessage(BaseModel):
+    lat: float
+    lng: float
+
+
+class DroneProps(BaseModel):
+    volt: float
+    temp: float
+    pos: PosistionMessage
+
+
+class KSSPropsModel(BaseModel):
+    temp: float
+    battery_level: float
+
+
+class DiagnosticsMessage(BaseModel):
+    droneProps: DroneProps
+    KSSProps: KSSPropsModel
