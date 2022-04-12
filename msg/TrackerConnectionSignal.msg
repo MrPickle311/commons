@@ -1,1 +1,1 @@
-uint8 signal_descriptor
+string signal_descriptor

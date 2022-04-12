@@ -1,6 +1,5 @@
 import time
 from abc import ABC, abstractmethod
-from enum import IntEnum
 from threading import Lock
 from typing import Optional
 
@@ -85,11 +84,11 @@ class SerialSocket(ISerialSocket):
         return not self._socket.isOpen()
 
 
-class SerialState(IntEnum):
-    CONNECTED = 0
-    DISCONNECTED = 1
-    EMPTY_INPUT = 2
-    RECEIVING_DATA = 3
+class SerialState:
+    CONNECTED = 'connected'
+    DISCONNECTED = 'disconnected'
+    EMPTY_INPUT = 'empty_input'
+    RECEIVING_DATA = 'receiving_data'
 
 
 class ISerialReceiver(ABC):
@@ -98,7 +97,7 @@ class ISerialReceiver(ABC):
     def flush_handler(self, bytes_package: bytes) -> None: ...
 
     @abstractmethod
-    def state_handler(self, serial_state: SerialState) -> None: ...
+    def state_handler(self, serial_state: str) -> None: ...
 
     @abstractmethod
     def data_absence_handler(self): ...
@@ -122,11 +121,10 @@ class SerialDataPipe:
 
     def _init_timer(self, state_notify_period):
 
-        def state_handler(serial_state: SerialState):
-            self._receiver.state_handler(serial_state)
+        def state_handler():
+            self._receiver.state_handler(self._pipe_state)
 
-        self._timer = MultiTimer(state_notify_period, state_handler, {'serial_state': self._pipe_state},
-                                 runonstart=False)
+        self._timer = MultiTimer(state_notify_period, state_handler, runonstart=False)
 
     def _start_timer(self):
         self._timer.start()
