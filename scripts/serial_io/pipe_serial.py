@@ -60,8 +60,21 @@ class SerialDevice:
 
 class SerialSocket(ISerialSocket):
     def __init__(self, device: SerialDevice):
-        self._socket = serial.Serial(port=device.port, bytesize=device.byte_size, parity=device.parity,
-                                     stopbits=device.stop_bits, timeout=device.timeout, baudrate=device.baud_rate)
+        self._try_open_serial_port(device)
+
+    def _try_open_serial_port(self, device: SerialDevice):
+        while True:
+            try:
+                self._socket = serial.Serial(port=device.port, bytesize=device.byte_size, parity=device.parity,
+                                             stopbits=device.stop_bits, timeout=device.timeout, baudrate=device.baud_rate)
+                break
+            except:
+                self.print_disconnection_message()
+                time.sleep(1)
+
+    @staticmethod
+    def print_disconnection_message():
+        print('Cannot connect to ttyUSB0. Propably device is unconnected or permission danied. Retrying...')
 
     def read_data(self, count: int) -> Optional[bytes]:
         return self._socket.read(count)
@@ -151,8 +164,9 @@ class SerialDataPipe:
             if self._data_absence_timeout_occurred():
                 self._reset_data_absence_timeout()
 
-        except IOError:
+        except:
             self._socket.close()
+            self._socket.print_disconnection_message()
             self._try_reopen_serial_port()
 
     def start_flushing(self):
@@ -161,6 +175,7 @@ class SerialDataPipe:
 
         while self._is_flushing:
             self._try_flush()
+            time.sleep(1)
 
     def stop_flushing(self):
         with self._lock:
@@ -176,7 +191,7 @@ class SerialDataPipe:
             self._socket.close()
 
     def _is_pipe_disconnected(self):
-        return not self._pipe_state == SerialState.DISCONNECTED
+        return self._pipe_state == SerialState.DISCONNECTED
 
     def _try_reopen_serial_port(self):
         self._pipe_state = SerialState.DISCONNECTED
