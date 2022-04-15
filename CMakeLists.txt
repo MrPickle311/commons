@@ -47,6 +47,7 @@ add_message_files(
         RotorRelativePosition.msg
         DroneState.msg
         DroneEvent.msg
+        ParamsUploadedEvent.msg
 )
 
 ## Generate services in the 'srv' folder
