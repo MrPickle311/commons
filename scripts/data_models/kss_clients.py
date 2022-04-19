@@ -41,3 +41,7 @@ class KSSPropsModel(BaseModel):
 class DiagnosticsMessage(BaseModel):
     droneProps: DroneProps
     KSSProps: KSSPropsModel
+
+
+class EmptyMessage(BaseModel):
+    ...
