@@ -16,6 +16,7 @@ class DynamicParams(BaseModel):
     min_solar_panels_voltage: float
     miranda_latt: float
     miranda_long: float
+    close_landing_radius: float
     landing_radius: float
     far_landing_radius: float
     follow_interval: float

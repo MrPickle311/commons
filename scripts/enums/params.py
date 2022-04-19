@@ -12,6 +12,7 @@ class Params:
     MIN_SOLAR_PANELS_VOLTAGE = 'min_solar_panels_voltage'
     MIRANDA_LATT = 'miranda_latt'
     MIRANDA_LONG = 'miranda_long'
+    CLOSE_LANDING_RADIUS = 'close_landing_radius'
     LANDING_RADIUS = 'landing_radius'
     FAR_LANDING_RADIUS = 'far_landing_radius'
     FOLLOW_INTERVAL = 'follow_interval'
