@@ -10,12 +10,21 @@ class StationStateIndicator:
     DRONE_STARTED = "drone_started"
     POSITIONERS_SLIDED_OFF = 'positioners_slided_off'
     ROOF_CLOSED = 'roof_closed'
+
+    DRONE_IS_APPROACHING = 'drone_is_approaching'
     DRONE_READY_FOR_LANDING = "drone_ready_for_landing"
     DRONE_LANDING = 'drone_landing'
     DRONE_LANDED = "drone_landed"
     DRONE_SERVICED = "drone_serviced"
 
     STATION_ERROR = "station_error"
+
+
+class ComEvent:
+    COM_INITIALIZED = 'com_initialized'
+    DRONE_IS_APPROACHING = 'drone_is_approaching'
+    DRONE_IS_READY_TO_LAND = 'drone_is_ready_to_land'
+    DRONE_LANDED = 'drone_landed'
 
 
 class StationErrors:
